@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import Link from 'next/link';
-import { notFound, useRouter } from 'next/navigation';
+import { notFound } from 'next/navigation';
 
 
 export default async function Page({ params, }: {
@@ -9,8 +9,8 @@ export default async function Page({ params, }: {
     const webpageId = (await params).webpageId;
     const supabase = createClient(process.env.SUPABASE_URL ? process.env.SUPABASE_URL : "", process.env.SUPABASE_KEY ? process.env.SUPABASE_KEY : "");
 
-    var url = "";
-    var email = "";
+    let url = "";
+    let email = "";
     const { data, error } = await supabase
         .from('webpages')
         .select()
@@ -27,7 +27,7 @@ export default async function Page({ params, }: {
       <div>
         <div className="text-center pl-1 pr-1 md:p-0">
           <h1 className="text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl ">New Alert Created Successfully</h1>
-          <p className="mt-3">We'll check in on this webpage every <b>24 hours</b> to let you know if anything changes</p>
+          <p className="mt-3">We&apos;ll check in on this webpage every <b>24 hours</b> to let you know if anything changes</p>
           <Link href={url} className='link link-hover'>
             <h2 className='text-1xl font-bold leading-none tracking-tight md:text-2xl lg:text-3xl'>{url}</h2>
           </Link>

@@ -9,7 +9,7 @@ const WebpageInput = () => {
   const [email, setEmail] = useState('');
   const router = useRouter();
 
-  async function startTracking(event: any){
+  async function startTracking(event: React.MouseEvent<HTMLButtonElement>){
 
     event.preventDefault();
 
