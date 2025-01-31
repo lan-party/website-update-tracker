@@ -4,7 +4,7 @@ import React from 'react'
 import { FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, RedditIcon, RedditShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share'
 
 const SocialMediaShare = () => {
-    const url = "http://localhost:3000/"
+    const url = "https://www.website-tracker.com/"
   return (
     <>
 
