@@ -1,6 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
-import toast from "react-hot-toast";
 import Stripe from "stripe";
 
 
