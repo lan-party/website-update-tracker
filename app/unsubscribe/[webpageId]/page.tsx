@@ -27,7 +27,7 @@ export default async function Page({ params, }: {
       <div>
       <div className="text-center pl-1 pr-1 md:p-0">
         <h1 className="text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl ">Unsubscribe from alerts</h1>
-        <p className="mt-3 mb-1">Click the button below to disable alert notifications for <b>{email}</b> about the webpage <b>"{url}"</b>.</p>
+        <p className="mt-3 mb-1">Click the button below to disable alert notifications for <b>{email}</b> about the webpage <b>&quot;{url}&quot;</b>.</p>
         {!["", null].includes(stripe_subscription_id) && <p className="text-sm"><i>This will disable automatic monthlly charges.</i></p>}
         <UnsubscribeButton webpageId={webpageId} />
       </div>
