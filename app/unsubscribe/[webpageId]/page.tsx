@@ -1,4 +1,3 @@
-import UnsubscribeButton from "@/components/UnsubscribeButton";
 import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import { redirect } from "next/navigation";
