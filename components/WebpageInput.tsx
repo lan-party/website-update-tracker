@@ -15,7 +15,7 @@ const WebpageInput = () => {
 
       if(/\S+@\S+\.\S+/.test(email)){
         
-      toast.loading("Submitting webpage");
+      toast.loading("Submitting webpage.");
       
       const supabase = createClient(process.env.SUPABASE_URL ? process.env.SUPABASE_URL : "", process.env.SUPABASE_KEY ? process.env.SUPABASE_KEY : "");
 
