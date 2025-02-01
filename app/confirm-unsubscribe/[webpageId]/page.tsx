@@ -8,7 +8,6 @@ export default async function Page({ params, }: {
   params: Promise<{ webpageId: string }>
 }) {
 
-    toast.loading("Disabling alert.")
 
     const webpageId = (await params).webpageId;
     const supabase = createClient(process.env.SUPABASE_URL ? process.env.SUPABASE_URL : "", process.env.SUPABASE_KEY ? process.env.SUPABASE_KEY : "");
