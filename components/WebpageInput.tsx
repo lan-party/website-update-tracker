@@ -64,7 +64,8 @@ const WebpageInput = () => {
             </svg>
           <input type="text" className="grow" placeholder="Website URL" 
             onInput={(e) =>{ setUrl((e.target as HTMLInputElement).value); }}
-            onBlur={(e) => {if(!url.includes("http://") && !url.includes("https://")){ setUrl(`http://${url}`); (e.target as HTMLInputElement).value = `http://${url}`; }}}
+            onBlur={(e) => { if(!url.includes("http://") && !url.includes("https://") && url != ""){ setUrl(`http://${url}`); (e.target as HTMLInputElement).value = `http://${url}`; }}}
+            onFocus={(e) => { (e.target as HTMLInputElement).select(); }}
            />
       </label>
 

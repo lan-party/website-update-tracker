@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import { FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, RedditIcon, RedditShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share'
 
-const SocialMediaShare = () => {
+const Footer = () => {
     const url = "https://www.website-tracker.com/"
   return (
     <>
@@ -55,4 +55,4 @@ const SocialMediaShare = () => {
   )
 }
 
-export default SocialMediaShare
+export default Footer
