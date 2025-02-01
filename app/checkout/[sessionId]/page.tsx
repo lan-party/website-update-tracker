@@ -1,7 +1,36 @@
+import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
+import Stripe from "stripe";
 
+export default async function Page({ params, }: {
+    params: Promise<{ sessionId: string }>
+}) {
+    const sessionId = (await params).sessionId;
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ? process.env.STRIPE_SECRET_KEY : "");
 
-export default function Page() {
+    const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId, {
+      expand: ['line_items'],
+    });
+
+    if (checkoutSession.payment_status !== 'unpaid') {
+      const supabase = createClient(process.env.SUPABASE_URL ? process.env.SUPABASE_URL : "", process.env.SUPABASE_KEY ? process.env.SUPABASE_KEY : "");
+
+      // Select latest webpage entry for the given email address
+      const { data, error } = await supabase.from('webpages')
+        .select()
+        .eq('notification_email', checkoutSession.customer_details?.email)
+        .order('created_at', { ascending: false })
+        .limit(1);
+
+      if(!error && data.length > 0 && data[0].stripe_subscription_id == null){
+
+        // Update webpages table entry to include subscription id
+        await supabase.from('webpages')
+          .update({ 'stripe_subscription_id': checkoutSession.subscription })
+          .eq('id', data[0].id);
+      }
+    }
+
     return (
       <div className="h-screen flex items-center justify-center">
         <div>

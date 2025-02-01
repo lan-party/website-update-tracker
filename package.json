@@ -14,7 +14,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.1",
-    "react-share": "^5.1.2"
+    "react-share": "^5.1.2",
+    "stripe": "^17.6.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

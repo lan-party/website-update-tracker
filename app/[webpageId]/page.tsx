@@ -33,7 +33,7 @@ export default async function Page({ params, }: {
           </Link>
           <p className="mt-5">Need to know faster? Upgrade to a paid plan and be notified within <b>minutes</b> for only <b>$1</b> per month!</p>
           <p>Click the button below for faster updates</p>
-          <Link href={`https://buy.stripe.com/test_eVa4jX5dR09ff964gh?prefilled_email=${encodeURIComponent(email)}`}>
+          <Link href={`${process.env.STRIPE_PAYMENT_LINK ? process.env.STRIPE_PAYMENT_LINK : ""}?prefilled_email=${encodeURIComponent(email)}`}>
             <button className="btn btn-primary align-middle md:ml-3 w-72 md:w-52 mt-4 md:mt-3">Upgrade</button>
           </Link>
         </div>
