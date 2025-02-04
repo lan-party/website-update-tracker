@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <GoogleAnalytics gaId="AW-443214391" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-base-300`}
