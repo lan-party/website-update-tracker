@@ -28,7 +28,7 @@ const WebpageInput = () => {
         .select();
         
       if(!error){
-        router.push(`/${data[0].id}`);
+        router.push(`/alert/${data[0].id}`);
         setTimeout(() => {
           toast.dismiss();
         }, 1000);
