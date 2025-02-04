@@ -29,6 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <GoogleAnalytics gaId="G-6XCCGW5SP3" />
       <GoogleAnalytics gaId="AW-443214391" />
       </head>
       <body
