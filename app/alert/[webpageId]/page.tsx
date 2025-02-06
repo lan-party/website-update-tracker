@@ -21,7 +21,7 @@ export default async function Page({ params, }: {
     }else{
         notFound();
     }
-console.log(process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK);
+    
   return (
     <div className="h-screen flex items-center justify-center">
       <div>

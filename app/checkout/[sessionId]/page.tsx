@@ -19,10 +19,11 @@ export default async function Page({ params, }: {
       const { data, error } = await supabase.from('webpages')
         .select()
         .eq('notification_email', checkoutSession.customer_details?.email)
+        .is('stripe_subscription_id', null)
         .order('created_at', { ascending: false })
         .limit(1);
 
-      if(!error && data.length > 0 && data[0].stripe_subscription_id == null){
+      if(!error && data.length > 0){
 
         // Update webpages table entry to include subscription id
         await supabase.from('webpages')
