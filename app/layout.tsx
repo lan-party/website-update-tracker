@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         
-<Script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/7932ed81724c1.js" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></Script>
+      {/* <Script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/7932ed81724c1.js" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></Script> */}
 
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <GoogleAnalytics gaId="G-6XCCGW5SP3" />
