@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 const WebpageInput = () => {
   const [url, setUrl] = useState('');
   const [email, setEmail] = useState('');
+  const [options, setOptions] = useState({'status_code': true, 'page_title': true, 'page_content': false});
   const router = useRouter();
 
   async function startTracking(){
@@ -23,7 +24,10 @@ const WebpageInput = () => {
         .from('webpages')
         .insert({ 
           url: url,
-          notification_email: email
+          notification_email: email,
+          track_status_code: options['status_code'],
+          track_page_title: options['page_title'],
+          track_page_content: options['page_content']
         })
         .select();
         
@@ -94,6 +98,38 @@ const WebpageInput = () => {
 
           </button>
 
+      </div>
+      <div className='input-group'>
+        <div className="collapse collapse-arrow">
+          <input type="checkbox" />
+          <div className="collapse-title text-sm text-right">Advanced Options</div>
+          <div className="collapse-content mb-6">
+            <p>Select which details to keep track of.</p>
+            <label className="flex align-middle m-3">
+              <input type="checkbox" defaultChecked className="checkbox mr-2" onChange={(e) => { 
+                setOptions({'status_code': e.target.checked, 
+                'page_title': options['page_title'], 
+                'page_content': options['page_content']});
+                }} /> <p>Status Code</p>
+            </label>
+            <p className="ml-8 italic text-sm">404, 200, 500, etc.</p>
+            <label className="flex align-middle m-3 mt-5">
+              <input type="checkbox" defaultChecked className="checkbox mr-2" onChange={(e) => {
+                setOptions({'status_code': options['status_code'], 
+                'page_title': e.target.checked, 
+                'page_content': options['page_content']});
+              }} /> <p>Page Title</p>
+            </label>
+            <label className="flex align-middle m-3 mt-5">
+              <input type="checkbox" className="checkbox mr-2" onChange={(e) => {
+                setOptions({'status_code': options['status_code'], 
+                'page_title': options['page_title'], 
+                'page_content': e.target.checked});
+              }} /> <p>Page Content</p>
+            </label>
+            <p className="ml-8 italic text-sm">Warning: Dynamic webpage content may cause unexpected behaviour.</p>
+          </div>
+        </div>
       </div>
     </div>
   )
