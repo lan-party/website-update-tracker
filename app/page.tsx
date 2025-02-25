@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 
 export default async function Home({
   searchParams
-}: any) {
+}: { searchParams: Promise<{ id: string }>}) {
   
   const supabase = createClient(process.env.SUPABASE_URL ? process.env.SUPABASE_URL : "", process.env.SUPABASE_KEY ? process.env.SUPABASE_KEY : "");
   const { id } = await searchParams;
