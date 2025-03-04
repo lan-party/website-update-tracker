@@ -4,11 +4,15 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 
-const WebpageInput = () => {
+const WebpageInput = ({ copyId }: { copyId: string }) => {
   const [url, setUrl] = useState('');
   const [email, setEmail] = useState('');
   const [options, setOptions] = useState({'status_code': true, 'page_title': true, 'page_content': false});
   const router = useRouter();
+
+  async function sendWelcomeEmail(url: string, email: string, options: {status_code: boolean, page_title: boolean, page_content: boolean}){
+    console.log([url, email, options]);
+  }
 
   async function startTracking(){
 
@@ -16,31 +20,34 @@ const WebpageInput = () => {
 
       if(/\S+@\S+\.\S+/.test(email)){
         
-      toast.loading("Submitting webpage.");
-      
-      const supabase = createClient(process.env.SUPABASE_URL ? process.env.SUPABASE_URL : "", process.env.SUPABASE_KEY ? process.env.SUPABASE_KEY : "");
-
-      const { data, error } = await supabase
-        .from('webpages')
-        .insert({ 
-          url: url,
-          notification_email: email,
-          track_status_code: options['status_code'],
-          track_page_title: options['page_title'],
-          track_page_content: options['page_content']
-        })
-        .select();
+        toast.loading("Submitting webpage.");
         
-      if(!error){
-        router.push(`/alert/${data[0].id}`);
-        setTimeout(() => {
-          toast.dismiss();
-        }, 1000);
-        
-      }else{
+        const supabase = createClient(process.env.SUPABASE_URL ? process.env.SUPABASE_URL : "", process.env.SUPABASE_KEY ? process.env.SUPABASE_KEY : "");
 
-        toast.error("Error. Please try again later.");
-      }
+        const { data, error } = await supabase
+          .from('webpages')
+          .insert({ 
+            url: url,
+            notification_email: email,
+            track_status_code: options['status_code'],
+            track_page_title: options['page_title'],
+            track_page_content: options['page_content'],
+            landing_copy_id: copyId
+          })
+          .select();
+
+          sendWelcomeEmail(url, email, options);
+          
+        if(!error){
+          router.push(`/alert/${data[0].id}`);
+          setTimeout(() => {
+            toast.dismiss();
+          }, 1000);
+          
+        }else{
+
+          toast.error("Error. Please try again later.");
+        }
 
       }else{
 
