@@ -27,32 +27,19 @@
                                 </div>
                             </a>
                         </div>
-                        {{warning_message}}
                         <div style="padding: 20px; border-style: solid; border-width: 1px; border-color: oklch(84.8707% 0 0/.2); border-radius: .125rem;">
-                            <div style="text-align: left;">
-                            <h1 style="margin: 1rem 0">Webpage Update Alert</h1>
-                            <p style="padding-bottom: 16px">A recent change has been detected on a website we're tracking for you.</p>
-                            <p style="padding-bottom: 16px"><strong style="font-size: 130%">{{url}}</strong></p>
-                            
-                            <h3>Latest Snapshot</h3>
-                            <ul>
-                                <li><b>Check Timestamp:</b> {{latest_check_timestamp}}</li>
-                                <li><b>Status Code:</b> {{latest_status_code}}</li>
-                                <li><b>Page Checksum:</b> {{latest_checksum}}</li>
-                            </ul>
                             <div style="text-align: center;">
-                                <img src="{{latest_screenshot}}" style="width: 90%" />
-                            </div>
+                            <h1 style="margin: 1rem 0">Website Update Alerts Confirmation</h1>
+                            <p style="padding-bottom: 16px">Thank you for using Website-Tracker.com</p>
+                            <h2>{{url}}</h2>
+                            <p style="padding-bottom: 16px">We'll check in on this webpage every 24 hours and send a you a notification if anything changes.</p>
 
-                            <h3 style="margin-top: 35px;">Previous Snapshot</h3>
-                            <ul>
-                                <li><b>Check Timestamp:</b> {{previous_check_timestamp}}</li>
-                                <li><b>Status Code:</b> {{previous_status_code}}</li>
-                                <li><b>Page Checksum:</b> {{previous_checksum}}</li>
+                            <h3 style="margin-top: 35px;">Here are the details being monitored</h3>
+                            <ul style="padding-left: 20%; text-align: left;">
+                                <li><b>Status Code:</b> {{status_code_icon}}</li>
+                                <li><b>Page Title:</b> {{page_title_icon}}</li>
+                                <li><b>Page Contents:</b> {{page_contents_icon}}</li>
                             </ul>
-                            <div style="text-align: center;">
-                                <img src="{{previous_screenshot}}" style="width: 90%" />
-                            </div>
 
                             <div style="text-align: center;">
                                 <a href="{{upgrade_url}}">

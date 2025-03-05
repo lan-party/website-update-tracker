@@ -4,15 +4,12 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 
-const WebpageInput = ({ copyId }: { copyId: string }) => {
+const WebpageInput = ({ copyId, sendWelcomeEmail }: { copyId: string, sendWelcomeEmail: any }) => {
   const [url, setUrl] = useState('');
   const [email, setEmail] = useState('');
   const [options, setOptions] = useState({'status_code': true, 'page_title': true, 'page_content': false});
   const router = useRouter();
-
-  async function sendWelcomeEmail(url: string, email: string, options: {status_code: boolean, page_title: boolean, page_content: boolean}){
-    console.log([url, email, options]);
-  }
+ 
 
   async function startTracking(){
 
@@ -36,9 +33,9 @@ const WebpageInput = ({ copyId }: { copyId: string }) => {
           })
           .select();
 
-          sendWelcomeEmail(url, email, options);
           
         if(!error){
+          sendWelcomeEmail(data[0].id, url, email, options);
           router.push(`/alert/${data[0].id}`);
           setTimeout(() => {
             toast.dismiss();
