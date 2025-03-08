@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 
-const WebpageInput = ({ copyId, sendWelcomeEmail }: { copyId: string, sendWelcomeEmail: any }) => {
+const WebpageInput = ({ copyId, sendWelcomeEmail }: { copyId: string, sendWelcomeEmail: (webpageId: string, url: string, email: string, options: {status_code: boolean, page_title: boolean, page_content: boolean}) => void }) => {
   const [url, setUrl] = useState('');
   const [email, setEmail] = useState('');
   const [options, setOptions] = useState({'status_code': true, 'page_title': true, 'page_content': false});

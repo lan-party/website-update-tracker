@@ -3,7 +3,8 @@ import { createClient } from '@supabase/supabase-js';
 import Head from "next/head";
 import type { Metadata } from 'next'
 import fs from 'node:fs';
-const nodemailer = require('nodemailer');
+// import nodemailer from 'nodemailer';
+import { SMTPClient } from 'emailjs';
 
 export let metadata: Metadata = {
   title: "Website Status Tracker",
@@ -29,15 +30,13 @@ async function sendWelcomeEmail(webpageId: string, url: string, email: string, o
       if (error) {
           console.error("File read error:", error);
       } else {
-  
-        var transporter = nodemailer.createTransport({
-            host: process.env.EMAIL_HOST,
-            port: process.env.EMAIL_PORT,
-            auth: {
-                user: process.env.EMAIL_USERNAME,
-                pass: process.env.EMAIL_PASSWORD
-            }
-          });
+
+        const client = new SMTPClient({
+          user: process.env.EMAIL_USERNAME,
+          password: process.env.EMAIL_PASSWORD,
+          host: process.env.EMAIL_HOST,
+          ssl: true
+        });
 
         // Update variable placeholders in email template
         let bodyContent = fileBuffer;
@@ -48,18 +47,18 @@ async function sendWelcomeEmail(webpageId: string, url: string, email: string, o
         bodyContent = bodyContent.replaceAll("{{webpage_id}}", webpageId);
         bodyContent = bodyContent.replaceAll("{{upgrade_url}}", `${process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_1}?prefilled_email=${email}`);
         
-        var mailOptions = {
-            from: process.env.EMAIL_USERNAME,
-            to: email,
-            subject: "Website Update Alerts Confirmation",
-            html: bodyContent
+        const mailOptions = {
+          text: '',
+          from: process.env.EMAIL_USERNAME as string,
+          to: email,
+          subject: "Website Update Alerts Confirmation",
+          attachment: [
+            {data: bodyContent, alternative: true}
+          ]
         };
-        
-        transporter.sendMail(mailOptions, function(error: any, info: any){
-            if (error) {
-                console.log(error);
-            }
-        }); 
+
+        client.send(mailOptions, (err, message) => { console.log(err || message); });
+
       }
     }
   });
